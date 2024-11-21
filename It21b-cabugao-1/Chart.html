@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pie Chart and Bar Chart Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .chart-container {
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pie Chart and Bar Chart</h1>
+    <div class="chart-container">
+        <canvas id="pieChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="barChart"></canvas>
+    </div>
+
+    <script>
+      
+        const pieData = {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple"],
+            datasets: [{
+                data: [10, 20, 30, 25, 15],
+                backgroundColor: [
+                    "rgba(255, 99, 132, 0.6)",
+                    "rgba(54, 162, 235, 0.6)",
+                    "rgba(255, 206, 86, 0.6)",
+                    "rgba(75, 192, 192, 0.6)",
+                    "rgba(153, 102, 255, 0.6)"
+                ]
+            }]
+        };
+
+        const barData = {
+            labels: ["January", "February", "March", "April", "May"],
+            datasets: [{
+                label: "Monthly Sales",
+                data: [120, 190, 300, 500, 700],
+                backgroundColor: [
+                    "rgba(255, 99, 132, 0.6)",
+                    "rgba(54, 162, 235, 0.6)",
+                    "rgba(255, 206, 86, 0.6)",
+                    "rgba(75, 192, 192, 0.6)",
+                    "rgba(153, 102, 255, 0.6)"
+                ]
+            }]
+        };
+
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
+        new Chart(pieCtx, {
+            type: 'pie',
+            data: pieData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    title: {
+                        display: true,
+                        text: 'Pie Chart Example'
+                    }
+                }
+            }
+        });
+
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: barData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: true },
+                    title: {
+                        display: true,
+                        text: 'Bar Chart Example'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
